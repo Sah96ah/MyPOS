@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AdminAddUsersControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminDashBoard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="AdminLogin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SalesReportControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SalesReturnControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NewBillControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserDashBoard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AdminAddUsersControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminDashBoard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="AdminLogin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SalesReportControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SalesReturnControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewBillControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserDashBoard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
