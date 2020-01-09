@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\sah96\Documents\Project\Repos\MyPOS\InventarySystem\MyPos\obj\Debug\netcoreapp3.1\
+C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\
 MyPos
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\sah96\Documents\Project\Repos\MyPOS\InventarySystem\MyPos\App.xaml
+C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\App.xaml
 81767113082
 
 10-1673471549
-193281661149
+194280014478
 AdminAddUsersControl.xaml;AdminDashBoard.xaml;AdminLogin.xaml;MainWindow.xaml;NewBillControl.xaml;SalesReportControl.xaml;SalesReturnControl.xaml;UserDashBoard.xaml;
 
 False

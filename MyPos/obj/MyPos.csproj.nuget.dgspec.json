@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\InventarySystem\\MyPos\\MyPos.csproj": {}
+    "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\MyPos\\MyPos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\InventarySystem\\MyPos\\MyPos.csproj": {
+    "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\MyPos\\MyPos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\InventarySystem\\MyPos\\MyPos.csproj",
+        "projectUniqueName": "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\MyPos\\MyPos.csproj",
         "projectName": "MyPos",
-        "projectPath": "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\InventarySystem\\MyPos\\MyPos.csproj",
+        "projectPath": "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\MyPos\\MyPos.csproj",
         "packagesPath": "C:\\Users\\sah96\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\InventarySystem\\MyPos\\obj\\",
+        "outputPath": "C:\\Users\\sah96\\Documents\\Project\\Repos\\MyPOS\\MyPos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sah96\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.0, )"
             }
           },
           "imports": [
