@@ -12,6 +12,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Data;
 
 namespace MyPos
 {
@@ -24,6 +26,30 @@ namespace MyPos
         {
             InitializeComponent();
             Hidevisibilites();
+            fillcombo1();
+            fillDataGrid();
+        }
+
+        private void fillcombo1() 
+        {
+            cmb1.Items.Add("Admin");
+            cmb1.Items.Add("User");
+        }
+
+        private void fillDataGrid()
+        {
+            string con1 = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
+            string cmd1 = string.Empty;
+            using (SqlConnection con = new SqlConnection(con1))
+            {
+                cmd1 = "SELECT userID,username,mobile,usertype FROM Users";
+                SqlCommand cmd = new SqlCommand(cmd1, con);
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Employee");
+                sda.Fill(dt);
+                grdUserData.ItemsSource = dt.DefaultView;
+                
+            }
         }
 
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DBCS"].ToString());
@@ -41,17 +67,21 @@ namespace MyPos
                 string mobile = txtMobile.Text;
                 string address = txtAddress.Text;
                 string rePassword = txtRePassword.Text;
+                string usertype = cmb1.SelectedItem.ToString();
+
+                string HashPassword = MD5Hash(txtPassword.Text);
 
             //required field validation
             RequiredValidation(userId,uname,mobile,address, email, password, rePassword);
             
             if (passwordValidation(password,rePassword)==true && CanSubmit()==true)
             {
-                    string query = "INSERT INTO Users (userID,username,password,mobile,email,address) VALUES ('" + userId + "','" + uname + "','" + password + "','" + mobile + "','" + email + "','" + address + "')";
+                    string query = "INSERT INTO Users (userID,username,password,mobile,email,address,usertype) VALUES ('" + userId + "','" + uname + "','" + HashPassword + "','" + mobile + "','" + email + "','" + address + "','"+usertype+"')";
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
+                    fillDataGrid();
             }
             else{
                     //some code here
@@ -145,6 +175,28 @@ namespace MyPos
             }
                 
         }
+
+        public static string MD5Hash(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
-    
+
 }
