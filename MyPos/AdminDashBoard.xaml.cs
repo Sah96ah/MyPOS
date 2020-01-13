@@ -20,10 +20,16 @@ namespace MyPos
         public AdminDashBoard()
         {
             InitializeComponent();
-            //manage users control
-            AdminAddUsersControl w1 = new AdminAddUsersControl();
-            gridswitcher4.Children.Add(w1);
+    
+
+            AdminAddProductControl w2 = new AdminAddProductControl();
+            AdminAddUsersControl w4 = new AdminAddUsersControl();
+
+            gridswitcher2.Children.Add(w2);
+            gridswitcher4.Children.Add(w4);
+            
             gridswitcher4.Visibility = Visibility.Hidden;
+            gridswitcher2.Visibility = Visibility.Hidden;
 
         }
 
@@ -52,11 +58,14 @@ namespace MyPos
                 case 0:
                     break;
                 case 1:
+                    gridswitcher2.Visibility = Visibility.Visible;
+                    gridswitcher4.Visibility = Visibility.Hidden;
                     break;
                 case 2:
                     break;
                 case 3:
                     gridswitcher4.Visibility = Visibility.Visible;
+                    gridswitcher2.Visibility = Visibility.Hidden;
                     break;
 
             }

@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="AdminAddProductControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="AdminAddUsersControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +33,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AdminAddProductControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="AdminAddUsersControl.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -73,3 +73,5 @@ C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\bin\Debug\netcoreapp3.1\runti
 C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\AdminAddProductControl.g.cs
+C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\AdminAddProductControl.baml

@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Uid="0" Grid.Column="0" Content="Transaction" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
-            <Button x:Uid="1" Grid.Column="1" Content="Stock" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
+            <Button x:Uid="1" Grid.Column="1" Content="Add Product" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
             <Button x:Uid="2" Grid.Column="2" Content="Report" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click" />
             <Button x:Uid="3" Grid.Column="3" Content="Manage Users " BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click" />
             <Button x:Name="BtnLogout" Grid.Column="5" Content="{materialDesign:PackIcon logout}" ToolTip="Logout" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Click="BtnLogout_Click"/>
