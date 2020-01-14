@@ -26,7 +26,12 @@ namespace MyPos
             InitializeComponent();
             Hidevisibilites();
             fillDataGrid();
+            btnUpdate.IsEnabled = false;
+            btnDelete.IsEnabled = false;
         }
+        
+        //globals
+        int pId;
         string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
 
         private void fillDataGrid()
@@ -56,31 +61,19 @@ namespace MyPos
 
             RequiredValidation(p1,p2,p3,p4,p5);
 
-            if (CheckProductID()==false) 
+            if (CanSubmit() == true && CheckProductID()==false) 
             {
-                if (CanSubmit() == true)
-                {
-                    SqlConnection con = new SqlConnection(cs);
-
+                   using(SqlConnection con = new SqlConnection(cs))
+                   { 
                     string query = "INSERT INTO Stock (productID,catogory,description,unitPrice,quantity) VALUES (" + int.Parse(p3) + ",'" + p1 + "','" + p2 + "'," + decimal.Parse(p4) + "," + int.Parse(p5) + ")";
                     SqlCommand cmd = new SqlCommand(query, con);
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    con.Close();
+                   }
                     fillDataGrid();
-                }
-                else
-                {
-                    //some code here
-                }
-
             }
-           
-           
-            //}
-            
-
         }
+
         protected void RequiredValidation(string p1, string p2, string p3, string p4, string p5)
         {
 
@@ -95,6 +88,7 @@ namespace MyPos
             if (p5 == "")
                 QuantityValidator.Visibility = Visibility.Visible;
         }
+        
         protected void Hidevisibilites()
         {
             CatogoryValidator.Visibility = Visibility.Hidden;
@@ -103,7 +97,8 @@ namespace MyPos
             UnitPriceValidator.Visibility = Visibility.Hidden;
             QuantityValidator.Visibility = Visibility.Hidden;
         }
-        protected bool CanSubmit()
+        
+        private bool CanSubmit()
         {
             if (CatogoryValidator.Visibility == Visibility.Hidden &&
                 DescriptionValidator.Visibility == Visibility.Hidden &&
@@ -115,17 +110,17 @@ namespace MyPos
                 return false;
         }
 
-        protected bool CheckProductID()
+        private bool CheckProductID()
         {
-            int pId = int.Parse(txtProductId.Text);
-            string chkpID = "SELECT count(*) from Stock where productID="+ pId;
+            int temp = int.Parse(txtProductId.Text);
+            string chkpID = "SELECT count(*) from Stock where productID="+ temp;
             
             SqlConnection con2 = new SqlConnection(cs);
             SqlCommand cmd2 = new SqlCommand(chkpID, con2);
             con2.Open();
-            int temp = Convert.ToInt32(cmd2.ExecuteScalar().ToString());
+            int temp2 = Convert.ToInt32(cmd2.ExecuteScalar().ToString());
             con2.Close();
-            if (temp == 1)
+            if (temp2 == 1)
             {
                 ProductIdValidator.Visibility = Visibility.Visible;
                 ProductIdValidator.Content = "Product ID already exist";
@@ -136,7 +131,7 @@ namespace MyPos
 
         }
 
-        private void grdStockDetails_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        protected void grdStockDetails_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
              DataGrid gd = (DataGrid)sender;
              DataRowView row_selected = gd.SelectedItem as DataRowView;
@@ -147,7 +142,65 @@ namespace MyPos
                     txtProductId.Text = row_selected["productID"].ToString();
                     txtUnitPrice.Text = row_selected["unitPrice"].ToString();
                     txtQuantity.Text = row_selected["quantity"].ToString();
+
+                    pId = int.Parse(txtProductId.Text);
+                    btnUpdate.IsEnabled = true;
+                    btnDelete.IsEnabled = true;
+                    Hidevisibilites();
                 }
+                    txtProductId.IsReadOnly = true;
+                    
+        }
+        
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Hidevisibilites();
+
+            string p1 = txtCatogory.Text;
+            string p2 = txtDescription.Text;
+            string p3 = txtProductId.Text;
+            string p4 = txtUnitPrice.Text;
+            string p5 = txtQuantity.Text;
+
+            RequiredValidation(p1, p2, p3, p4, p5);
+
+            if(CanSubmit()==true)
+            {
+                using (SqlConnection con = new SqlConnection(cs))
+                { 
+                    string query = "Update Stock SET catogory='"+p1+ "',description='"+p2+ "',unitPrice="+decimal.Parse(p4)+ ",quantity="+ int.Parse(p5)+ " where productID="+pId+"";
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    con.Open();
+                    cmd.ExecuteNonQuery(); 
+                }
+                    fillDataGrid();
+                    txtProductId.IsReadOnly = false;
+                    txtCatogory.Text = "";
+                    txtDescription.Text = "";
+                    txtProductId.Text = "";
+                    txtUnitPrice.Text = "";
+                    txtQuantity.Text = "";
+
+                    btnUpdate.IsEnabled = false;
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "DELETE FROM Stock WHERE productID="+pId;
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+                fillDataGrid();
+                txtProductId.IsReadOnly = false;
+                txtCatogory.Text = "";
+                txtDescription.Text = "";
+                txtProductId.Text = "";
+                txtUnitPrice.Text = "";
+                txtQuantity.Text = "";
         }
     }
 }

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MyPos.Admin"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Grid Background="white" Width="1300" Height="680">
@@ -79,13 +78,23 @@
                 </Grid>
             </Grid>
             <Label x:Name="QuantityValidator" Content="required" HorizontalAlignment="Left" Margin="40 -5 0 0"  Foreground="red"/>
-
-
-            <Button x:Name="btnAdd" Content="Add" Width="100" Height="40" Style="{DynamicResource MaterialDesignFlatDarkBgButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{x:Null}" Background="Purple"  Foreground="White" Margin="0 40 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" materialDesign:ShadowAssist.ShadowDepth="Depth1" Click="btnAdd_Click"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
+            
+            <Grid Margin="30 50 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="btnAdd" Content="Add" Width="100" Height="40" Style="{DynamicResource MaterialDesignFlatDarkBgButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{x:Null}" Background="Purple"  Foreground="White"  materialDesign:ShadowAssist.ShadowDepth="Depth1" Click="btnAdd_Click"/>
+            <Button Grid.Column="1" x:Name="btnUpdate" Content="Update" Width="100" Height="40" Style="{DynamicResource MaterialDesignFlatDarkBgButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{x:Null}" Background="Purple"  Foreground="White"  materialDesign:ShadowAssist.ShadowDepth="Depth1" Click="btnUpdate_Click"/>
+            <Button Grid.Column="2" x:Name="btnDelete" Content="Delete" Width="100" Height="40" Style="{DynamicResource MaterialDesignFlatDarkBgButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{x:Null}" Background="Purple"  Foreground="White"  materialDesign:ShadowAssist.ShadowDepth="Depth1" Click="btnDelete_Click"/>
+            </Grid>
+            </StackPanel>
+        <StackPanel Grid.Column="1" CanVerticallyScroll="True" HorizontalAlignment="Center">
             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="Stock Information" Margin="0 30 0 0" FontSize="16"/>
-            <DataGrid x:Name="grdStockDetails" Width="560" Height="500" Margin="0 20 0 0" BorderBrush="Gray" AutoGenerateColumns="False" Background="{x:Null}" AlternatingRowBackground="Gray" CanUserResizeColumns="False" HeadersVisibility="Column" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" SelectionChanged="grdStockDetails_SelectionChanged">
+            <Grid Margin="0 20 0 0">
+                <Border BorderBrush="Aqua" Width="560" Height="500" BorderThickness="2">
+                    <DataGrid x:Name="grdStockDetails" Width="562" Height="500" AutoGenerateColumns="False" Background="{x:Null}" CanUserResizeColumns="False" HeadersVisibility="Column" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" SelectionChanged="grdStockDetails_SelectionChanged">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding catogory}" Width="120" Header="Catogory" IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding description}" Width="120" Header="Description" IsReadOnly="True"/>
@@ -94,6 +103,8 @@
                     <DataGridTextColumn Binding="{Binding quantity}" Width="100" Header="Quantity" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
+                </Border>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

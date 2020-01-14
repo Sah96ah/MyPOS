@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MyPos.Admin"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Height="900" Width="1600" WindowStyle="none" WindowState="Maximized" AllowsTransparency="false">
@@ -25,11 +24,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             
-            <Button x:Uid="0" Grid.Column="0" Content="Add Product" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
-            <Button x:Uid="1" Grid.Column="1" Content="Catogory" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
-            <Button x:Uid="2" Grid.Column="2" Content="Report" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click" />
-            <Button x:Uid="3" Grid.Column="3" Content="Transaction" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
-            <Button x:Uid="4" Grid.Column="4" Content="Manage Users " BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click" />
+            <Button x:Uid="0" Grid.Column="0" Content="Product" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
+            <Button x:Uid="1" Grid.Column="1" Content="Report" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click" />
+            <Button x:Uid="2" Grid.Column="2" Content="Transaction" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click"/>
+            <Button x:Uid="3" Grid.Column="3" Content="Manage Users " BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click" />
+            <Button x:Uid="4" Grid.Column="4" Content="Backup " BorderBrush="{x:Null}" Background="{x:Null}" Width="150" HorizontalAlignment="Left" Click="Button_Click" />
             <Button x:Name="BtnLogout" Grid.Column="6" Content="{materialDesign:PackIcon logout}" ToolTip="Logout" BorderBrush="{x:Null}" Background="{x:Null}" Padding="0" Click="BtnLogout_Click"/>
         </Grid>
         <Grid x:Name="tabslider" Width="150" Height="4" HorizontalAlignment="Left" Background="Black"></Grid>

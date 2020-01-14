@@ -1,5 +1,4 @@
-﻿using MyPos.Admin;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -24,15 +23,15 @@ namespace MyPos
     
 
             AdminAddProductControl w1 = new AdminAddProductControl();
-            AdminAddCatogory w2 = new AdminAddCatogory(); 
-            AdminAddUsersControl w5 = new AdminAddUsersControl();
+            AdminAddUsersControl w4 = new AdminAddUsersControl();
 
             gridswitcher1.Children.Add(w1);
-            gridswitcher2.Children.Add(w2);
-            gridswitcher5.Children.Add(w5);
+            gridswitcher4.Children.Add(w4);
             
             gridswitcher1.Visibility = Visibility.Visible;
             gridswitcher2.Visibility = Visibility.Hidden;
+            gridswitcher3.Visibility = Visibility.Hidden;
+            gridswitcher4.Visibility = Visibility.Hidden;
             gridswitcher5.Visibility = Visibility.Hidden;
 
         }
@@ -62,17 +61,25 @@ namespace MyPos
                 case 0:
                     gridswitcher1.Visibility = Visibility.Visible;
                     gridswitcher2.Visibility = Visibility.Hidden;
+                    gridswitcher3.Visibility = Visibility.Hidden;
+                    gridswitcher4.Visibility = Visibility.Hidden;
                     gridswitcher5.Visibility = Visibility.Hidden;
                     break;
                 case 1:
                     gridswitcher2.Visibility = Visibility.Visible;
-                    gridswitcher1.Visibility = Visibility.Hidden; 
+                    gridswitcher1.Visibility = Visibility.Hidden;
+                    gridswitcher3.Visibility = Visibility.Hidden;
+                    gridswitcher4.Visibility = Visibility.Hidden;
                     gridswitcher5.Visibility = Visibility.Hidden;
                     break;
                 case 2:
                     break;
                 case 3:
-                    
+                    gridswitcher4.Visibility = Visibility.Visible;
+                    gridswitcher1.Visibility = Visibility.Hidden;
+                    gridswitcher2.Visibility = Visibility.Hidden;
+                    gridswitcher3.Visibility = Visibility.Hidden;
+                    gridswitcher5.Visibility = Visibility.Hidden;
                     break;
                 case 4:
                     gridswitcher5.Visibility = Visibility.Visible;

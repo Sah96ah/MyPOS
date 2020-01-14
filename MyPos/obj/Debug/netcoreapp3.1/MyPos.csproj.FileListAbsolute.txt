@@ -73,5 +73,3 @@ C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\User\
 C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\User\SalesReportControl.baml
 C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\User\SalesReturnControl.baml
 C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\User\UserDashBoard.baml
-C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\Admin\AdminAddCatogory.g.cs
-C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\obj\Debug\netcoreapp3.1\Admin\AdminAddCatogory.baml
