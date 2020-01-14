@@ -22,9 +22,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" x:Uid="0" Content="New Bill" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
-            <Button Grid.Column="1" x:Uid="1" Content="Sales Return" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
-            <Button Grid.Column="2" x:Uid="2" Content="Sales Report" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
+            <Button Grid.Column="0" x:Uid="0" Content="Sales" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
+            <Button Grid.Column="1" x:Uid="1" Content="Return" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
+            <Button Grid.Column="2" x:Uid="2" Content="Report" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
             <Button Grid.Column="4" x:Name="BtnLogout" Content="{materialDesign:PackIcon logout}" ToolTip="Logout" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#374047" Padding="0" Click="BtnLogout_Click"/>
             <Button Grid.Column="5" x:Name="BtnClose" Content="{materialDesign:PackIcon power}" ToolTip="Exit" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#374047" Padding="0" Click="btnClose_Click"/>
         </Grid>

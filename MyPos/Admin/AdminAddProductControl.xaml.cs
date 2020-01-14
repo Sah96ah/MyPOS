@@ -148,7 +148,6 @@ namespace MyPos
                     btnDelete.IsEnabled = true;
                     Hidevisibilites();
                 }
-                    txtProductId.IsReadOnly = true;
                     
         }
         

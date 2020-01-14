@@ -8,12 +8,12 @@
     <Grid Background="white" Width="1300" Height="680">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <TextBlock Text="Add New Product" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 30 0 0" FontSize="16"/>
 
-            <Grid Margin="30 20 0 0" Width="350" HorizontalAlignment="Left">
+            <Grid Margin="0 20 0 0" Width="350" HorizontalAlignment="Center">
                 <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="350" Height="40">
                     <Grid.ColumnDefinitions>
@@ -24,8 +24,9 @@
                     <TextBox x:Name="txtCatogory"  Grid.Column="1" Width="240" FontSize="14" IsReadOnly="false" BorderBrush="{x:Null}" HorizontalAlignment="Left" Margin="10 6 0 0"/>
                 </Grid>
             </Grid>
-            <Label x:Name="CatogoryValidator" Content="required" HorizontalAlignment="Left" Margin="40 -5 0 0"  Foreground="red"/>
-            <Grid Margin="30 20 0 0" Width="350" HorizontalAlignment="Left">
+            <Label x:Name="CatogoryValidator" Content="required" HorizontalAlignment="Left" Margin="160 -5 0 0"  Foreground="red"/>
+            
+            <Grid Margin="0 20 0 0" Width="350" HorizontalAlignment="Center">
                 <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="350" Height="40">
                     <Grid.ColumnDefinitions>
@@ -36,10 +37,10 @@
                     <TextBox x:Name="txtDescription"  Grid.Column="1" Width="240" FontSize="14" IsReadOnly="false" BorderBrush="{x:Null}" HorizontalAlignment="Left" Margin="10 6 0 0"/>
                 </Grid>
             </Grid>
-            <Label x:Name="DescriptionValidator" Content="required" HorizontalAlignment="Left" Margin="40 -5 0 0"  Foreground="red"/>
+            <Label x:Name="DescriptionValidator" Content="required" HorizontalAlignment="Left" Margin="160 -5 0 0"  Foreground="red"/>
 
 
-            <Grid Margin="30 20 0 0" Width="350" HorizontalAlignment="Left">
+            <Grid Margin="0 20 0 0" Width="350" HorizontalAlignment="Center">
                 <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="350" Height="40">
                     <Grid.ColumnDefinitions>
@@ -51,9 +52,9 @@
                 </Grid>
             </Grid>
             
-            <Label x:Name="ProductIdValidator" Content="required" HorizontalAlignment="Left" Margin="40 -5 0 0"  Foreground="red"/>
+            <Label x:Name="ProductIdValidator" Content="required" HorizontalAlignment="Left" Margin="160 -5 0 0"  Foreground="red"/>
             
-            <Grid Margin="30 20 0 0" Width="350" HorizontalAlignment="Left">
+            <Grid Margin="0 20 0 0" Width="350" HorizontalAlignment="Center">
                 <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="350" Height="40">
                     <Grid.ColumnDefinitions>
@@ -64,9 +65,9 @@
                     <TextBox x:Name="txtUnitPrice"  Grid.Column="1" Width="240" FontSize="14" IsReadOnly="false" BorderBrush="{x:Null}" HorizontalAlignment="Left" Margin="10 6 0 0"/>
                 </Grid>
             </Grid>
-            <Label x:Name="UnitPriceValidator" Content="required" HorizontalAlignment="Left" Margin="40 -5 0 0"  Foreground="red"/>
+            <Label x:Name="UnitPriceValidator" Content="required" HorizontalAlignment="Left" Margin="160 -5 0 0"  Foreground="red"/>
             
-            <Grid Margin="30 20 0 0" Width="350" HorizontalAlignment="Left">
+            <Grid Margin="0 20 0 0" Width="350" HorizontalAlignment="Center">
                 <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="350" Height="40">
                     <Grid.ColumnDefinitions>
@@ -77,9 +78,9 @@
                     <TextBox x:Name="txtQuantity"  Grid.Column="1" Width="240" FontSize="14" IsReadOnly="false" BorderBrush="{x:Null}" HorizontalAlignment="Left" Margin="10 6 0 0"/>
                 </Grid>
             </Grid>
-            <Label x:Name="QuantityValidator" Content="required" HorizontalAlignment="Left" Margin="40 -5 0 0"  Foreground="red"/>
+            <Label x:Name="QuantityValidator" Content="required" HorizontalAlignment="Left" Margin="160 -5 0 0"  Foreground="red"/>
             
-            <Grid Margin="30 50 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="350">
+            <Grid Margin="0 50 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="350">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
