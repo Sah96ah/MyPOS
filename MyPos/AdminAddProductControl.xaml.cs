@@ -76,7 +76,7 @@ namespace MyPos
 
             }
            
-
+           
             //}
             
 
@@ -138,7 +138,16 @@ namespace MyPos
 
         private void grdStockDetails_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+             DataGrid gd = (DataGrid)sender;
+             DataRowView row_selected = gd.SelectedItem as DataRowView;
+                if(row_selected!=null)
+                {
+                    txtCatogory.Text = row_selected["catogory"].ToString();
+                    txtDescription.Text = row_selected["description"].ToString();
+                    txtProductId.Text = row_selected["productID"].ToString();
+                    txtUnitPrice.Text = row_selected["unitPrice"].ToString();
+                    txtQuantity.Text = row_selected["quantity"].ToString();
+                }
         }
     }
 }
