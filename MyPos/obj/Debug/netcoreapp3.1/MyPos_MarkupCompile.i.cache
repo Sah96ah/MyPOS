@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\sah96\Documents\Project\Repos\MyPOS\MyPos\App.xaml
-9-1106754908
+9568964567
 
-12840881397
+12-1942475887
 194280014478
-AdminAddProductControl.xaml;AdminAddUsersControl.xaml;AdminDashBoard.xaml;AdminLogin.xaml;MainWindow.xaml;NewBillControl.xaml;SalesReportControl.xaml;SalesReturnControl.xaml;UserDashBoard.xaml;
+Admin\AdminAddCatogory.xaml;Admin\AdminAddProductControl.xaml;Admin\AdminAddUsersControl.xaml;Admin\AdminDashBoard.xaml;MainWindow.xaml;User\NewBillControl.xaml;User\SalesReportControl.xaml;User\SalesReturnControl.xaml;User\UserDashBoard.xaml;
 
-False
+True
 

@@ -7,57 +7,57 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="AdminAddProductControl.xaml.cs">
+    <Compile Update="Admin\AdminAddCatogory.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminAddUsersControl.xaml.cs">
+    <Compile Update="Admin\AdminAddProductControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminDashBoard.xaml.cs">
+    <Compile Update="Admin\AdminAddUsersControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="AdminLogin.xaml.cs">
+    <Compile Update="Admin\AdminDashBoard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SalesReportControl.xaml.cs">
+    <Compile Update="User\SalesReportControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SalesReturnControl.xaml.cs">
+    <Compile Update="User\SalesReturnControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="NewBillControl.xaml.cs">
+    <Compile Update="User\NewBillControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserDashBoard.xaml.cs">
+    <Compile Update="User\UserDashBoard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="AdminAddProductControl.xaml">
+    <Page Update="Admin\AdminAddCatogory.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminAddUsersControl.xaml">
+    <Page Update="Admin\AdminAddProductControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminDashBoard.xaml">
+    <Page Update="Admin\AdminAddUsersControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="AdminLogin.xaml">
+    <Page Update="Admin\AdminDashBoard.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SalesReportControl.xaml">
+    <Page Update="User\SalesReportControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SalesReturnControl.xaml">
+    <Page Update="User\SalesReturnControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="NewBillControl.xaml">
+    <Page Update="User\NewBillControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserDashBoard.xaml">
+    <Page Update="User\UserDashBoard.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

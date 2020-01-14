@@ -23,26 +23,38 @@ namespace MyPos
         public MainWindow()
         {
             InitializeComponent();
+            fillCombo();
+        }
+
+        private void fillCombo()
+        {
+            cmbUsertype.Items.Add("Admin");
+            cmbUsertype.Items.Add("User");
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            
         }
 
-        private void btnAdminSwitcher_Click(object sender, RoutedEventArgs e)
-        {
-            AdminLogin w1 = new AdminLogin();
-            w1.Show();
-            this.Close();
-        }
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            UserDashBoard w2 = new UserDashBoard();
-            w2.Show();
-            this.Close();
+            if (cmbUsertype.SelectedItem.ToString()=="User")
+            {
+                UserDashBoard w2 = new UserDashBoard();
+                w2.Show();
+                this.Close();
+            }
+            else if(cmbUsertype.SelectedItem.ToString() == "Admin") 
+            {
+                AdminDashBoard w2 = new AdminDashBoard();
+                w2.Show();
+                this.Close();
+            }
+            
         }
+
+       
     }
 }
