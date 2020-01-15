@@ -6,15 +6,15 @@
              xmlns:local="clr-namespace:MyPos"
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Grid  Background="white" Width="1000" Height="680">
+    <Grid  Background="white" Width="1300" Height="680">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0">
             <TextBlock Text="Add to Bill" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 10 0 0" FontSize="16"/>
 
-            <Grid Margin="0 30 0 0" Width="350" Height="40">
+            <Grid Margin="0 25 0 0" Width="350" Height="40">
                 <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="350" >
                     <Grid.ColumnDefinitions>
@@ -118,14 +118,14 @@
                 </Grid.ColumnDefinitions>
                 <Button x:Name="btnAdd" Grid.Column="0" Content="Add" Width="100" Height="40" Style="{DynamicResource MaterialDesignFlatDarkBgButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{x:Null}" Background="Purple"  Foreground="White" materialDesign:ShadowAssist.ShadowDepth="Depth1" Click="btnAdd_Click">
                 </Button>
-                <Button Grid.Column="1" Content="Remove" Width="100" Height="40"  Style="{DynamicResource MaterialDesignFlatDarkBgButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{x:Null}" Background="Maroon"  Foreground="White" materialDesign:ShadowAssist.ShadowDepth="Depth1"/>
+                <Button x:Name="btnRemove" Grid.Column="1" Content="Remove" Width="100" Height="40"  Style="{DynamicResource MaterialDesignFlatDarkBgButton}" materialDesign:ButtonAssist.CornerRadius="5" BorderBrush="{x:Null}" Background="Maroon"  Foreground="White" materialDesign:ShadowAssist.ShadowDepth="Depth1" Click="btnRemove_Click"/>
             </Grid>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="Bill Information" Margin="0 10 0 0" FontSize="16"/>
             
-            <Grid Margin="0 30 0 0" Width="350">
-                <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="15"/>
+            <Grid Margin="0 20 0 0" Width="350">
+                <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="350" Height="40">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -136,7 +136,23 @@
                 </Grid>
             </Grid>
 
-            <Button Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="6"  materialDesign:ShadowAssist.ShadowDepth="Depth1" Background="purple" Width="100" Height="40" Content="Print" Foreground="White" Margin="0 30 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial"/>
+            <Grid Margin="0 20 0 0">
+                <Border BorderBrush="Aqua" Width="580" Height="500" BorderThickness="2">
+                    <DataGrid x:Name="grdBillDetails" Width="580" Height="500" Background="{x:Null}"  CanUserResizeColumns="False" CanUserAddRows="True" HeadersVisibility="Column" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" SelectionChanged="grdBillDetails_SelectionChanged" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="80" Header="Product ID" IsReadOnly="True" Binding="{Binding Path=p7}"/>
+                            <DataGridTextColumn  Width="120" Header="Description" IsReadOnly="true" Binding="{Binding Path=p1}"/>
+                            <DataGridTextColumn  Width="100" Header="Unit price" IsReadOnly="true" Binding="{Binding Path=p2}"/>
+                            <DataGridTextColumn  Width="80" Header="Quantity" IsReadOnly="true" Binding="{Binding Path=p3}" />
+                            <DataGridTextColumn  Width="100" Header="Sub total" IsReadOnly="true" Binding="{Binding Path=p4}"/>
+                            <DataGridTextColumn  Width="80" Header="Discount" IsReadOnly="true" Binding="{Binding Path=p5}"/>
+                            <DataGridTextColumn  Width="100" Header="Total" IsReadOnly="true" Binding="{Binding Path=p6}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Grid>
+
+            <Button x:Name="btnConfirm" Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="6"  materialDesign:ShadowAssist.ShadowDepth="Depth1" Background="purple" Width="100" Height="40" Content="Print" Foreground="White" Margin="0 30 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" Click="btnConfirm_Click"/>
 
         </StackPanel>
     </Grid>
