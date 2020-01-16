@@ -33,7 +33,7 @@ namespace MyPos
             //filldataTable();
         }
 
-        int rowindex;//for deleting datagrid row
+        private int rowindex;//for deleting datagrid row
 
         string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
 
@@ -67,7 +67,6 @@ namespace MyPos
         private void cmbProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             clearAll();
-
             //databind to cmbProductID
             if (cmbProduct.SelectedItem.ToString() == "")
             {
@@ -75,8 +74,10 @@ namespace MyPos
             }
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string query = "SELECT DISTINCT productID FROM Stock WHERE catogory='" + cmbProduct.SelectedItem.ToString() + "'";
-                SqlCommand cmd = new SqlCommand(query, con);
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "SELECT DISTINCT productID FROM Stock WHERE catogory=@ct";
+                cmd.Connection = con;
+                cmd.Parameters.AddWithValue("@ct", cmbProduct.SelectedItem.ToString());
                 con.Open();
                 SqlDataReader rd = cmd.ExecuteReader();
                 while (rd.Read())
@@ -96,14 +97,17 @@ namespace MyPos
                 int pId = int.Parse(cmbProductID.SelectedItem.ToString());
                 using (SqlConnection con = new SqlConnection(cs))
                 {
-                    string query = "SELECT description FROM Stock WHERE productID=" + pId.ToString();
-                    string query2 = "SELECT unitPrice FROM Stock WHERE productID=" + pId.ToString();
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    SqlCommand cmd2 = new SqlCommand(query2, con);
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = "SELECT description, unitPrice FROM Stock WHERE productID=@pid";
+                    cmd.Parameters.AddWithValue("@pid", pId.ToString());
+                    cmd.Connection = con;
                     con.Open();
-                    txtProductDes.Text = (cmd.ExecuteScalar()).ToString();
-                    txtUnitPrice.Text = (cmd2.ExecuteScalar()).ToString();
-
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                       txtProductDes.Text = rd.GetValue(0).ToString();
+                       txtUnitPrice.Text = rd.GetValue(1).ToString();
+                    }
                 }
 
             }
@@ -115,7 +119,6 @@ namespace MyPos
             {
                 decimal unitPrice = decimal.Parse(txtUnitPrice.Text);
                 decimal quantity = decimal.Parse(txtQuality.Text);
-
                 decimal subtotal = unitPrice * quantity;
 
                 txtSubTotal.Text = subtotal.ToString();
@@ -155,17 +158,27 @@ namespace MyPos
             || txtSubTotal.Text != "" || cmbProduct.SelectedIndex != -1 || cmbProductID.SelectedIndex != -1)
             {
                 //set attribute for data grid class
-                var data = new Grid { p1 = txtProductDes.Text, p2 = txtUnitPrice.Text, p3 = txtQuality.Text, p4 = txtSubTotal.Text, p5 = txtDiscount.Text, p6 = txtTotal.Text, p7 = int.Parse(cmbProductID.SelectedItem.ToString())};
-
+                var data = new Grid { 
+                    p1 = txtProductDes.Text,
+                    p2 = txtUnitPrice.Text,
+                    p3 = txtQuality.Text,
+                    p4 = txtSubTotal.Text,
+                    p5 = txtDiscount.Text,
+                    p6 = txtTotal.Text,
+                    p7 = int.Parse(cmbProductID.SelectedItem.ToString())};
                 grdBillDetails.Items.Add(data);
                 clearAll();
             }
         }
         
+        //add bill to database
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            string dt = DateTime.Now.ToString();
-            string date = Regex.Replace(dt, @"[^0-9]", "");
+            string dt = DateTime.Now.ToString("MM/dd/yyyy");
+            
+            //bill number generator
+            string dt2 = DateTime.Now.ToString();
+            string date = Regex.Replace(dt2, @"[^0-9]", "");
             long bn = long.Parse(date);
 
             //get each cell values in datagrid
@@ -184,20 +197,25 @@ namespace MyPos
                 using (SqlConnection con = new SqlConnection(cs))
                 {
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "INSERT INTO Sales (billno,productID,description,unitprice,quantity,subtotal,discount,total,date) VALUES (" + bn + "," + int.Parse(productId.Text) + ",'" + description.Text + "'," + decimal.Parse(unitPrice.Text) + "," + int.Parse(Quantity.Text) + "," + decimal.Parse(Subtotal.Text) + "," + decimal.Parse(Discount.Text) + "," + decimal.Parse(Total.Text) + ",'"+txtCurrentDate.Text+ "')";
+                    cmd.CommandText = "INSERT INTO Sales (billno,productID,description,unitprice,quantity,subtotal,discount,total,date) VALUES (@bn,@pid,@des,@up,@qu,@sub,@dis,@total,@dt)";
                     cmd.Connection = con;
+
+                    cmd.Parameters.AddWithValue("@bn", bn);
+                    cmd.Parameters.AddWithValue("@pid", int.Parse(productId.Text));
+                    cmd.Parameters.AddWithValue("@des", description.Text);
+                    cmd.Parameters.AddWithValue("@up", decimal.Parse(unitPrice.Text));
+                    cmd.Parameters.AddWithValue("@qu", int.Parse(Quantity.Text));
+                    cmd.Parameters.AddWithValue("@sub", decimal.Parse(Subtotal.Text));
+                    cmd.Parameters.AddWithValue("@dis", decimal.Parse(Discount.Text));
+                    cmd.Parameters.AddWithValue("@total", decimal.Parse(Total.Text));
+                    cmd.Parameters.AddWithValue("@dt", dt);
+
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
             }
         }
         
-        private int BillNumberGenerator(int min, int max)
-        {
-            Random random = new Random();
-            return random.Next(min, max);
-        }
-
         //delete row from grid 
         private void grdBillDetails_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

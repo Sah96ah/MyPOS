@@ -1,5 +1,9 @@
-Create a  master class for user and addmin funtionality
+Req:
+admin adduser controll code cleanup
 
-tmrw complete all the UI design part 
+when sales something need to update stock 
+as well as return 
+need modification on sales return
 
-friday 3rd of Jan connect database to project
+Last update
+	added return product to data base table

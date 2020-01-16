@@ -65,8 +65,15 @@ namespace MyPos
             {
                    using(SqlConnection con = new SqlConnection(cs))
                    { 
-                    string query = "INSERT INTO Stock (productID,catogory,description,unitPrice,quantity) VALUES (" + int.Parse(p3) + ",'" + p1 + "','" + p2 + "'," + decimal.Parse(p4) + "," + int.Parse(p5) + ")";
-                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = "INSERT INTO Stock (productID,catogory,description,unitPrice,quantity) VALUES (@pid,@ct,@des,@up,@qu)";
+                    cmd.Connection = con;
+                    
+                    cmd.Parameters.AddWithValue("@pid", int.Parse(p3));
+                    cmd.Parameters.AddWithValue("@ct", p1);
+                    cmd.Parameters.AddWithValue("@des",p2);
+                    cmd.Parameters.AddWithValue("@up", decimal.Parse(p4));
+                    cmd.Parameters.AddWithValue("@qu", int.Parse(p5));
                     con.Open();
                     cmd.ExecuteNonQuery();
                    }
@@ -167,8 +174,15 @@ namespace MyPos
             {
                 using (SqlConnection con = new SqlConnection(cs))
                 { 
-                    string query = "Update Stock SET catogory='"+p1+ "',description='"+p2+ "',unitPrice="+decimal.Parse(p4)+ ",quantity="+ int.Parse(p5)+ " where productID="+pId+"";
-                    SqlCommand cmd = new SqlCommand(query, con);
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = "Update Stock SET catogory=@ct,description=@des,unitPrice=@up,quantity=@qu where productID=@pid";
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@ct",p1);
+                    cmd.Parameters.AddWithValue("@des", p2);
+                    cmd.Parameters.AddWithValue("@up", decimal.Parse(p4));
+                    cmd.Parameters.AddWithValue("@qu", int.Parse(p5));
+                    cmd.Parameters.AddWithValue("@pid", pId);
+
                     con.Open();
                     cmd.ExecuteNonQuery(); 
                 }
