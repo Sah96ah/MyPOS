@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Data;
 
 namespace MyPos
 {
@@ -28,17 +29,18 @@ namespace MyPos
 
         string cs = ConfigurationManager.ConnectionStrings["DBCS"].ConnectionString;
         private int rowindex;
+        Returninfo info = new Returninfo();
 
         //clear all text field values 
         private void clearAll()
         {
-            txtProductID.Text = "";
-            txtDate.Text = "";
-            txtDescription.Text = "";
-            txtQuantity.Text = "";
+            //txtProductID.Text = "";
+            //txtDate.Text = "";
+            //txtDescription.Text = "";
+            //txtQuantity.Text = "";
             txtQuantityReturn.Text = "";
-            txtTotal.Text = "";
-            txtUnitPrice.Text = "";
+            //txtTotal.Text = "";
+            //txtUnitPrice.Text = "";
             txtQuantityReturn.Text = "";
         }
 
@@ -46,25 +48,38 @@ namespace MyPos
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             long bno = long.Parse(txtbillNo.Text);
-            int pID = int.Parse(txtProductID.Text);
+            //int pID = int.Parse(txtProductID.Text);
 
+            //using (SqlConnection con = new SqlConnection(cs))
+            //{
+            //    SqlCommand cmd = new SqlCommand();
+            //    cmd.CommandText = "SELECT date,description,quantity,unitprice,total FROM Sales WHERE billno=" + bno + " AND productID=" + pID;
+            //    cmd.Connection = con;
+            //    con.Open();
+            //    SqlDataReader rd = cmd.ExecuteReader();
+            //    while (rd.Read())
+            //    {
+            //        txtDate.Text = rd.GetValue(0).ToString();
+            //        txtDescription.Text = rd.GetValue(1).ToString();
+            //        txtQuantity.Text = rd.GetValue(2).ToString();
+            //        txtUnitPrice.Text = rd.GetValue(3).ToString();
+            //        txtTotal.Text = rd.GetValue(4).ToString();
+            //    }
+            //}
+
+            //retrive bill information
             using (SqlConnection con = new SqlConnection(cs))
             {
                 SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT date,description,quantity,unitprice,total FROM Sales WHERE billno=" + bno + " AND productID=" + pID;
                 cmd.Connection = con;
+                cmd.CommandText = "SELECT description,unitprice,quantity,subtotal,discount,productID,date FROM Sales WHERE billno=@bn";
+                cmd.Parameters.AddWithValue("@bn", bno);
                 con.Open();
-                SqlDataReader rd = cmd.ExecuteReader();
-                while (rd.Read())
-                {
-                    txtDate.Text = rd.GetValue(0).ToString();
-                    txtDescription.Text = rd.GetValue(1).ToString();
-                    txtQuantity.Text = rd.GetValue(2).ToString();
-                    txtUnitPrice.Text = rd.GetValue(3).ToString();
-                    txtTotal.Text = rd.GetValue(4).ToString();
-                }
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable("Bill");
+                sda.Fill(dt);
+                grdBill.ItemsSource = dt.DefaultView;
             }
-
         }
 
         //not allow other than numeric value in text box
@@ -82,15 +97,16 @@ namespace MyPos
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             //to check if any empty fields available
-            if (txtbillNo.Text != "" || txtProductID.Text != "")
+            if (txtbillNo.Text != "")
             {
+
                 //set attribute for data grid class
                 var data = new Grid2 {
-                    p1 = int.Parse(txtProductID.Text),
-                    p2 = txtDescription.Text,
+                    p1 = info.p1,
+                    p2 = info.p2,
                     p3 = int.Parse(txtQuantityReturn.Text),
-                    p4 = decimal.Parse(txtUnitPrice.Text),
-                    p5 = ((decimal.Parse(txtTotal.Text)/decimal.Parse(txtQuantity.Text))*decimal.Parse(txtQuantityReturn.Text))
+                    p4 = info.p4,
+                    p5 = info.p5 / info.p3 * decimal.Parse(txtQuantityReturn.Text)
                 };
 
                 grdReturnDetails.Items.Add(data);
@@ -125,7 +141,7 @@ namespace MyPos
             }
             return child;
         }
-    
+
         //remove from data grid 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
@@ -155,8 +171,8 @@ namespace MyPos
                 {
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandText = "INSERT INTO SalesReturn (billno, productID, description,quantity,amountreturn,date) VALUES (@bn,@pid,@des,@qu, @total,@dt)";
-                    
-                    cmd.Parameters.AddWithValue("@bn",long.Parse(txtbillNo.Text));
+
+                    cmd.Parameters.AddWithValue("@bn", long.Parse(txtbillNo.Text));
                     cmd.Parameters.AddWithValue("@pid", int.Parse(productId.Text));
                     cmd.Parameters.AddWithValue("@des", description.Text);
                     cmd.Parameters.AddWithValue("@qu", int.Parse(Quantity.Text));
@@ -174,8 +190,43 @@ namespace MyPos
 
             //add to stock
         }
+
+        private void grdBill_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid gd = (DataGrid)sender;
+            DataRowView row_selected = gd.SelectedItem as DataRowView;
+            if (row_selected != null)
+            {
+                txtDate.Text = row_selected["date"].ToString();
+                //txtTotal.Text = row_selected["subtotal"].ToString();
+                //txtDescription.Text = row_selected["description"].ToString();
+                //txtProductID.Text = row_selected["productID"].ToString();
+                //txtUnitPrice.Text = row_selected["unitPrice"].ToString();
+                //txtQuantity.Text = row_selected["quantity"].ToString();
+
+                info.p1 = int.Parse(row_selected["productID"].ToString());
+                info.p2 = row_selected["description"].ToString();
+                info.p3 = int.Parse(row_selected["quantity"].ToString());
+                info.p4 = decimal.Parse(row_selected["unitPrice"].ToString());
+                info.p5 = decimal.Parse(row_selected["subtotal"].ToString());
+            }
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+        }
     }
 
+    //
+    public class Returninfo
+    {
+        public int p1 { get; set; }
+        public string p2 { get; set; }
+        public int p3 { get; set; }
+        public decimal p4 { get; set; }
+        public decimal p5 { get; set; }
+    }
     //add details to grid 
     public class Grid2
     {

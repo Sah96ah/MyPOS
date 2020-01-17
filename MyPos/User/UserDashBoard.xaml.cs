@@ -20,19 +20,6 @@ namespace MyPos
         public UserDashBoard()
         {
             InitializeComponent();
-            NewBillControl w0 = new NewBillControl();
-            gridswitcher1.Children.Add(w0);
-
-            SalesReturnControl w1 = new SalesReturnControl();
-            gridswitcher2.Children.Add(w1);
-
-            SalesReportControl w2 = new SalesReportControl();
-            gridswitcher3.Children.Add(w2);
-
-            gridswitcher1.Visibility = Visibility.Visible;
-            gridswitcher2.Visibility = Visibility.Hidden;
-            gridswitcher3.Visibility = Visibility.Hidden;
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -40,41 +27,46 @@ namespace MyPos
 
             int index = int.Parse(((Button)e.Source).Uid);
 
-            tabslider.Margin = new Thickness((150 * index), 0, 0, 0);
-
             // tab view switches
             switch (index)
             {
                 case 0:
+                    NewBillControl w0 = new NewBillControl();
+                    gridswitcher1.Children.Add(w0);
+                    
                     gridswitcher1.Visibility = Visibility.Visible;
                     gridswitcher2.Visibility = Visibility.Hidden;
                     gridswitcher3.Visibility = Visibility.Hidden;
+
                     break;
                 case 1:
+                    SalesReturnControl w1 = new SalesReturnControl();
+                    gridswitcher2.Children.Add(w1);
                     
                     gridswitcher1.Visibility = Visibility.Hidden;
                     gridswitcher2.Visibility = Visibility.Visible;
                     gridswitcher3.Visibility = Visibility.Hidden;
+
                     break;
                 case 2:
+                    SalesReportControl w2 = new SalesReportControl();
+                    gridswitcher3.Children.Add(w2);
+                    
                     gridswitcher1.Visibility = Visibility.Hidden;
                     gridswitcher2.Visibility = Visibility.Hidden;
                     gridswitcher3.Visibility = Visibility.Visible;
+                    
                     break;
 
             }
         }
 
-        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow w4 = new MainWindow();
-            w4.Show();
+            MainWindow w1 = new MainWindow();
+            w1.Show();
             this.Close();
-        }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

@@ -6,35 +6,60 @@
         xmlns:local="clr-namespace:MyPos"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Height="900" Width="1200" WindowStyle="none" WindowState="Maximized" AllowsTransparency="false">
-    <StackPanel>
-        <Grid Background="#374047" Width="auto" Height="50">
+        WindowStyle="None" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid  Grid.Row="0" Background="#374047" Width="auto" Height="50">
             <TextBlock Text="User Dashboard" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0" FontSize="16" Foreground="White"/>
             <TextBlock Text="Welcome" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 10 20 0" FontSize="14" Foreground="White"/>
             <TextBlock Text="@user" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 20 5" FontSize="12" Foreground="White"/>
         </Grid>
-        <Grid Background="#ddccf5" Height="35">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="14*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" x:Uid="0" Content="Sales" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
-            <Button Grid.Column="1" x:Uid="1" Content="Return" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
-            <Button Grid.Column="2" x:Uid="2" Content="Report" BorderBrush="{x:Null}" Background="{x:Null}" Width="150" Click="Button_Click"/>
-            <Button Grid.Column="4" x:Name="BtnLogout" Content="{materialDesign:PackIcon logout}" ToolTip="Logout" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#374047" Padding="0" Click="BtnLogout_Click"/>
-            <Button Grid.Column="5" x:Name="BtnClose" Content="{materialDesign:PackIcon power}" ToolTip="Exit" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#374047" Padding="0" Click="btnClose_Click"/>
+        
+        <!--Main Grid-->
+        <Grid Grid.Row="1" Width="auto" Background="White" Height="auto">
+            <Grid Background="{x:Null}" Height="150" Width="auto" VerticalAlignment="Center" HorizontalAlignment="Center">
+             
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" x:Uid="0" x:Name="btnSales" Background="Gray" Width="140" Height="140" Click="Button_Click" materialDesign:ButtonAssist.CornerRadius="15"  materialDesign:ShadowAssist.ShadowDepth="Depth2" Margin="5,5,5,5" Grid.RowSpan="2" >
+                    <materialDesign:PackIcon Kind="Label" Width="50" Height="50" Foreground="White"/>
+                </Button>
+                <TextBlock Grid.Column="0" Text="Sales" Margin="0,0,0,10" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14"/>
+                <Button Grid.Column="1" x:Uid="1" x:Name="btnReturn" Background="Gray" Width="140" Height="140" Click="Button_Click"  materialDesign:ButtonAssist.CornerRadius="15"  materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.RowSpan="2">
+                    <materialDesign:PackIcon Kind="AssignmentReturn" Width="40" Height="40" Foreground="White" />
+                </Button>
+                <TextBlock Grid.Column="1" Text="Return" Margin="0,0,0,10" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14" />
+
+                <Button Grid.Column="2" x:Uid="2" x:Name="btnStock" Background="Gray" Width="140" Height="140" Click="Button_Click" materialDesign:ButtonAssist.CornerRadius="15"  materialDesign:ShadowAssist.ShadowDepth="Depth2" Grid.RowSpan="2">
+                    <materialDesign:PackIcon Kind="Database"  Width="40" Height="40" Foreground="White"/>
+                </Button>
+                <TextBlock Grid.Column="2" Text="Stock" Margin="0,0,0,10" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14"/>
+
+                <Button Grid.Column="3" x:Name="btnLogout" Background="Gray" Width="140" Height="140" materialDesign:ButtonAssist.CornerRadius="15"  materialDesign:ShadowAssist.ShadowDepth="Depth2" Click="btnLogout_Click" >
+                    <materialDesign:PackIcon Kind="LogoutVariant" Foreground="White" Width="40" Height="50"/>
+                </Button>
+                <TextBlock  Grid.Column="3" Text="Logout" Margin="0,0,0,10" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="14"/>
+
+            </Grid>
+
+            <Grid>
+                <Grid x:Name="gridswitcher1"/>
+                <Grid x:Name="gridswitcher2"/>
+                <Grid x:Name="gridswitcher3"/>
+            </Grid>
         </Grid>
         
-        <Grid x:Name="tabslider" Width="150" Height="4" HorizontalAlignment="Left" Background="#606e79"></Grid>
-        
-        <Grid>
-            <Grid x:Name="gridswitcher1" Margin="0 10 0 0"/>
-            <Grid x:Name="gridswitcher2" Margin="0 10 0 0"/>
-            <Grid x:Name="gridswitcher3" Margin="0 10 0 0"/>
+        <Grid Grid.Row="2" Background="#374047" Width="auto" Height="50">
+            <TextBlock Text="footer" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20 0 0 0" FontSize="16" Foreground="White"/>
         </Grid>
-    </StackPanel>
+
+    </Grid>
 </Window>

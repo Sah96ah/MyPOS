@@ -44,7 +44,7 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="User type" FontSize="13" HorizontalAlignment="Left" Margin="15 5 0 0"/>
-                    <ComboBox x:Name="cmbUsertype"  Grid.Column="1" Background="#eceeef" Opacity="0.2" Width="130" Height="30" HorizontalAlignment="Left" Margin="2 0 0 0" VerticalAlignment="Bottom"/>
+                    <ComboBox SelectedIndex="1" x:Name="cmbUsertype"  Grid.Column="1" Background="#eceeef" Opacity="0.2" Width="130" Height="30" HorizontalAlignment="Left" Margin="2 0 0 0" VerticalAlignment="Bottom"/>
                 </Grid>
             </Grid>
 

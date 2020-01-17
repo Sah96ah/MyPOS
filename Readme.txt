@@ -1,9 +1,11 @@
 Req:
 admin adduser controll code cleanup
+clear all code
 
-when sales something need to update stock 
-as well as return 
-need modification on sales return
+
+update stock 
+when return 
+need design modification on sales return
 
 Last update
-	added return product to data base table
+	changes in UI

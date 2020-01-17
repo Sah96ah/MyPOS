@@ -68,24 +68,26 @@ namespace MyPos
         {
             clearAll();
             //databind to cmbProductID
-            if (cmbProduct.SelectedItem.ToString() == "")
+            
+            brdFindProduct.BorderBrush = Brushes.Gray;
+
+
+            if (cmbProduct.SelectedIndex != -1) 
             {
-                productValidator.Visibility = Visibility.Visible;
-            }
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandText = "SELECT DISTINCT productID FROM Stock WHERE catogory=@ct";
-                cmd.Connection = con;
-                cmd.Parameters.AddWithValue("@ct", cmbProduct.SelectedItem.ToString());
-                con.Open();
-                SqlDataReader rd = cmd.ExecuteReader();
-                while (rd.Read())
+                using (SqlConnection con = new SqlConnection(cs))
                 {
-                    cmbProductID.Items.Add(rd["productID"].ToString());
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = "SELECT DISTINCT productID FROM Stock WHERE catogory=@ct";
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@ct", cmbProduct.SelectedItem.ToString());
+                    con.Open();
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        cmbProductID.Items.Add(rd["productID"].ToString());
+                    }
                 }
             }
-
         }
 
         private void cmbProductID_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -158,16 +160,20 @@ namespace MyPos
             || txtSubTotal.Text != "" || cmbProduct.SelectedIndex != -1 || cmbProductID.SelectedIndex != -1)
             {
                 //set attribute for data grid class
-                var data = new Grid { 
+                var data = new Grid {
                     p1 = txtProductDes.Text,
                     p2 = txtUnitPrice.Text,
                     p3 = txtQuality.Text,
                     p4 = txtSubTotal.Text,
                     p5 = txtDiscount.Text,
                     p6 = txtTotal.Text,
-                    p7 = int.Parse(cmbProductID.SelectedItem.ToString())};
+                    p7 = int.Parse(cmbProductID.SelectedItem.ToString()) };
                 grdBillDetails.Items.Add(data);
                 clearAll();
+            }
+            else if(cmbProduct.SelectedIndex == -1)
+            {
+                brdFindProduct.BorderBrush = Brushes.Red;
             }
         }
         
@@ -181,6 +187,7 @@ namespace MyPos
             string date = Regex.Replace(dt2, @"[^0-9]", "");
             long bn = long.Parse(date);
 
+
             //get each cell values in datagrid
             for (int i = 0; i < grdBillDetails.Items.Count; i++)
             {
@@ -193,26 +200,64 @@ namespace MyPos
                 TextBlock Total = grdBillDetails.Columns[6].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
                 TextBlock productId = grdBillDetails.Columns[0].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
 
-               
+                //retrive avilable quantity
+                int qu;
                 using (SqlConnection con = new SqlConnection(cs))
                 {
                     SqlCommand cmd = new SqlCommand();
-                    cmd.CommandText = "INSERT INTO Sales (billno,productID,description,unitprice,quantity,subtotal,discount,total,date) VALUES (@bn,@pid,@des,@up,@qu,@sub,@dis,@total,@dt)";
                     cmd.Connection = con;
-
-                    cmd.Parameters.AddWithValue("@bn", bn);
+                    cmd.CommandText = "SELECT quantity FROM Stock WHERE productID=@pid";
                     cmd.Parameters.AddWithValue("@pid", int.Parse(productId.Text));
-                    cmd.Parameters.AddWithValue("@des", description.Text);
-                    cmd.Parameters.AddWithValue("@up", decimal.Parse(unitPrice.Text));
-                    cmd.Parameters.AddWithValue("@qu", int.Parse(Quantity.Text));
-                    cmd.Parameters.AddWithValue("@sub", decimal.Parse(Subtotal.Text));
-                    cmd.Parameters.AddWithValue("@dis", decimal.Parse(Discount.Text));
-                    cmd.Parameters.AddWithValue("@total", decimal.Parse(Total.Text));
-                    cmd.Parameters.AddWithValue("@dt", dt);
-
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    qu = (Int32)cmd.ExecuteScalar();
+
                 }
+
+                //check if stock is empty of not
+                if (qu >= int.Parse(Quantity.Text))
+                {
+               
+                    //add update database
+                    using (SqlConnection con = new SqlConnection(cs))
+                    {
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.CommandText = "INSERT INTO Sales (billno,productID,description,unitprice,quantity,subtotal,discount,total,date) VALUES (@bn,@pid,@des,@up,@qu,@sub,@dis,@total,@dt)";
+                        cmd.Connection = con;
+
+                        cmd.Parameters.AddWithValue("@bn", bn);
+                        cmd.Parameters.AddWithValue("@pid", int.Parse(productId.Text));
+                        cmd.Parameters.AddWithValue("@des", description.Text);
+                        cmd.Parameters.AddWithValue("@up", decimal.Parse(unitPrice.Text));
+                        cmd.Parameters.AddWithValue("@qu", int.Parse(Quantity.Text));
+                        cmd.Parameters.AddWithValue("@sub", decimal.Parse(Subtotal.Text));
+                        cmd.Parameters.AddWithValue("@dis", decimal.Parse(Discount.Text));
+                        cmd.Parameters.AddWithValue("@total", decimal.Parse(Total.Text));
+                        cmd.Parameters.AddWithValue("@dt", dt);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+
+                //update stock table 
+                //not allow negative value to stock
+                if (qu >= int.Parse(Quantity.Text))
+                {
+                    int quNew = qu - (int.Parse(Quantity.Text));
+                    //update quantity
+                    using (SqlConnection con = new SqlConnection(cs))
+                    {
+                        SqlCommand cmd1 = new SqlCommand();
+                        cmd1.Connection = con;
+                        cmd1.CommandText = "UPDATE Stock SET quantity=@qu WHERE productID=@pid";
+                        cmd1.Parameters.AddWithValue("@qu",quNew);
+                        cmd1.Parameters.AddWithValue("@pid", int.Parse(productId.Text));
+                        con.Open();
+                        cmd1.ExecuteNonQuery();
+                    }
+                }
+               
             }
         }
         
@@ -248,6 +293,12 @@ namespace MyPos
         {
             grdBillDetails.Items.RemoveAt(rowindex);
             btnAdd.IsEnabled = true;
+            cmbProduct.SelectedIndex = -1;
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;  
         }
     }
 
