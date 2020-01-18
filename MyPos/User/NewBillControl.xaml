@@ -39,18 +39,28 @@
                 </Grid>
             </Grid>
 
-            <Grid Margin="0 20 0 0" Width="300">
-                <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
-                <Grid Width="300" Height="40">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Description" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtProductDes" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                </Grid>
+            <Grid Margin="0 30 0 0" Width="300" Height="80">
+                <Rectangle Fill="Aqua" Height="80" RadiusX="5" RadiusY="5"/>
+                <StackPanel>
+                    <Grid Width="300" Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Description" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtProductDes" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="5 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Width="300" Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Unit Price" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtUnitPrice" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="5 0 20 0" VerticalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
             </Grid>
-
+            
             <Grid Margin="0 20 0 0" Width="300">
                 <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="300" Height="40">
@@ -62,31 +72,7 @@
                     <TextBox x:Name="txtQuality" Grid.Column="1" Width="180" FontSize="12" BorderBrush="{x:Null}" SelectionChanged="txtQuality_SelectionChanged" PreviewTextInput="PreviewTextInput" Margin="0 0 20 0" VerticalAlignment="Center"/>
                 </Grid>
             </Grid>
-            
-            <Grid Margin="0 20 0 0" Width="300">
-                <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
-                <Grid Width="300" Height="40">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Unit Price" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtUnitPrice" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="0 0 20 0" VerticalAlignment="Center"/>
-                </Grid>
-            </Grid>
- 
-            <Grid Margin="0 20 0 0" Width="300">
-                <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
-                <Grid Width="300" Height="40">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Sub Total" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtSubTotal" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="0 0 20 0" VerticalAlignment="Center"/>
-                </Grid>
-            </Grid>
-            
+
             <Grid Margin="0 20 0 0" Width="300">
                 <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="300" Height="40">
@@ -99,18 +85,29 @@
                 </Grid>
             </Grid>
 
-            <Grid Margin="0 20 0 0" Width="300">
-                <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
-                <Grid Width="300" Height="40">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Total" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtTotal" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="0 0 20 0" VerticalAlignment="Center"/>
-                </Grid>
-            </Grid>
+            <Grid Margin="0 30 0 0" Width="300" Height="80">
+                <Rectangle Fill="Aqua" Height="80" RadiusX="5" RadiusY="5"/>
+                <StackPanel>
+                    <Grid Width="300" Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Sub Total" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtSubTotal" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="0 0 20 0" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid Width="300" Height="40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Total" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtTotal" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" Margin="0 0 20 0" VerticalAlignment="Center"/>
+                    </Grid>
 
+                </StackPanel>
+            </Grid>
+            
             <Grid Margin="0 50 0 0" Height="40" Width="400" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -126,36 +123,46 @@
             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Text="Bill Information" Margin="0 20 0 0" FontSize="16"/>
             
             <Grid Margin="0 20 0 0" Width="300">
-                <Border BorderBrush="Aqua" BorderThickness="1" CornerRadius="5"/>
+                <Border BorderBrush="{x:Null}" BorderThickness="1" CornerRadius="5"/>
                 <Grid Width="300" Height="40">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Bill date" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="12" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtCurrentDate" Grid.Column="1" Width="180" FontSize="12" IsReadOnly="True" BorderBrush="{x:Null}" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Text="Bill date :" HorizontalAlignment="Left" Margin="15 0 0 0" FontSize="14" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtCurrentDate" Grid.Column="1" Width="180" FontSize="14" IsReadOnly="True" BorderBrush="{x:Null}" VerticalAlignment="Center"/>
                 </Grid>
             </Grid>
 
-            <Grid Margin="0 30 0 0">
-                    <DataGrid  Margin="20 10 20 0" Background="LightGray" x:Name="grdBillDetails" Width="445" Height="380"  CanUserResizeColumns="False" CanUserAddRows="True" HeadersVisibility="Column" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" SelectionChanged="grdBillDetails_SelectionChanged" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn  Width="120" Header="Description" IsReadOnly="true" Binding="{Binding Path=p1}" FontSize="11"/>
-                            <DataGridTextColumn  Width="85" Header="Unit Price" IsReadOnly="true" Binding="{Binding Path=p2}" FontSize="12"/>
-                            <DataGridTextColumn  Width="80" Header="Quantity" IsReadOnly="true" Binding="{Binding Path=p3}" FontSize="12"/>
-                            <DataGridTextColumn  Width="80" Header="Discount" IsReadOnly="true" Binding="{Binding Path=p5}" FontSize="12"/>
-                            <DataGridTextColumn  Width="80" Header="Total" IsReadOnly="true" Binding="{Binding Path=p6}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+            <Grid Margin="0 10 0 0">
+                <DataGrid  Margin="30 0 30 0" Background="LightGray" x:Name="grdBillDetails" Width="410" Height="380"  CanUserResizeColumns="False" CanUserAddRows="True" HeadersVisibility="Column" GridLinesVisibility="All" HorizontalGridLinesBrush="Black" SelectionChanged="grdBillDetails_SelectionChanged" materialDesign:DataGridAssist.CellPadding="8 5 0 5" HorizontalScrollBarVisibility="Disabled">
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="left"/>
+                            <Setter Property="Padding" Value="8 0 0 0"/>
+                            <Setter Property="Background" Value="Gray"/>
+                            <Setter Property="Height" Value="35"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  Width="100" Header="Description" IsReadOnly="true" Binding="{Binding Path=p1}" FontSize="11"/>
+                        <DataGridTextColumn  Width="85" Header="Unit Price" IsReadOnly="true" Binding="{Binding Path=p2}" FontSize="12"/>
+                        <DataGridTextColumn  Width="80" Header="Quantity" IsReadOnly="true" Binding="{Binding Path=p3}" FontSize="12"/>
+                        <DataGridTextColumn  Width="80" Header="Discount" IsReadOnly="true" Binding="{Binding Path=p5}" FontSize="12"/>
+                        <DataGridTextColumn  Width="80" Header="Total" IsReadOnly="true" Binding="{Binding Path=p6}" FontSize="12" FontWeight="Bold"/>
+                        
+                        <DataGridTextColumn   Binding="{Binding Path=p7}"/>
+                        <DataGridTextColumn   Binding="{Binding Path=p4}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
 
             <Button x:Name="btnConfirm" Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ButtonAssist.CornerRadius="6"  materialDesign:ShadowAssist.ShadowDepth="Depth1" Background="purple" Width="100" Height="40" Content="Print" Foreground="White" Margin="0 45 0 0" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Arial" Click="btnConfirm_Click"/>
 
         </StackPanel>
         <StackPanel Grid.Column="2">
-            <Button x:Name="btnBack" FontSize="12" Width="100" Height="25" Background="Gray" Click="btnBack_Click" materialDesign:ButtonAssist.CornerRadius="4"  materialDesign:ShadowAssist.ShadowDepth="Depth0" BorderBrush="Gray" VerticalAlignment="Top" Margin="0 10 0 0" ToolTip="Back to Dashboard">
-                <materialDesign:PackIcon Kind="ArrowBack" Width="15" Height="15" Foreground="White"/>
-            </Button>
+            <Button x:Name="btnBack" Foreground="White"  Content="Back" FontSize="12" Width="100" Height="25" Background="Gray" Click="btnBack_Click" materialDesign:ButtonAssist.CornerRadius="8"  materialDesign:ShadowAssist.ShadowDepth="Depth0" BorderBrush="Gray" VerticalAlignment="Top" Margin="0 10 0 0" ToolTip="Back to Dashboard"/>
         </StackPanel>
     </Grid>
 </UserControl>

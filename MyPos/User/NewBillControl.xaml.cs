@@ -186,20 +186,25 @@ namespace MyPos
             string dt2 = DateTime.Now.ToString();
             string date = Regex.Replace(dt2, @"[^0-9]", "");
             long bn = long.Parse(date);
-
+            decimal billtotal = 0;
 
             //get each cell values in datagrid
             for (int i = 0; i < grdBillDetails.Items.Count; i++)
             {
                 //get each colomn value 
-                TextBlock description = grdBillDetails.Columns[1].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
-                TextBlock unitPrice = grdBillDetails.Columns[2].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
-                TextBlock Quantity = grdBillDetails.Columns[3].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
-                TextBlock Subtotal = grdBillDetails.Columns[4].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
-                TextBlock Discount = grdBillDetails.Columns[5].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
-                TextBlock Total = grdBillDetails.Columns[6].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
-                TextBlock productId = grdBillDetails.Columns[0].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
+                TextBlock description = grdBillDetails.Columns[0].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
+                TextBlock unitPrice = grdBillDetails.Columns[1].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
+                TextBlock Quantity = grdBillDetails.Columns[2].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
+                TextBlock Discount = grdBillDetails.Columns[3].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
+                TextBlock Total = grdBillDetails.Columns[4].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
 
+
+                TextBlock productId = grdBillDetails.Columns[5].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
+                TextBlock Subtotal = grdBillDetails.Columns[6].GetCellContent(grdBillDetails.Items[i]) as TextBlock;
+
+                //for add to billinfo --> billtotal
+                billtotal = billtotal + decimal.Parse(Total.Text);
+                
                 //retrive avilable quantity
                 int qu;
                 using (SqlConnection con = new SqlConnection(cs))
@@ -216,8 +221,7 @@ namespace MyPos
                 //check if stock is empty of not
                 if (qu >= int.Parse(Quantity.Text))
                 {
-               
-                    //add update database
+                    //add to sales database
                     using (SqlConnection con = new SqlConnection(cs))
                     {
                         SqlCommand cmd = new SqlCommand();
@@ -237,8 +241,8 @@ namespace MyPos
                         con.Open();
                         cmd.ExecuteNonQuery();
                     }
+                   
                 }
-
 
                 //update stock table 
                 //not allow negative value to stock
@@ -258,6 +262,18 @@ namespace MyPos
                     }
                 }
                
+            }
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "INSERT INTO Billinfo (billno,total,date) VALUES (@bn,@t,@dt)";
+                cmd.Parameters.AddWithValue("@bn",bn);
+                cmd.Parameters.AddWithValue("@t", billtotal);
+                cmd.Parameters.AddWithValue("@dt",dt);
+                con.Open();
+                cmd.ExecuteNonQuery();
             }
         }
         

@@ -34,13 +34,6 @@ namespace MyPos
         //clear all text field values 
         private void clearAll()
         {
-            //txtProductID.Text = "";
-            //txtDate.Text = "";
-            //txtDescription.Text = "";
-            //txtQuantity.Text = "";
-            txtQuantityReturn.Text = "";
-            //txtTotal.Text = "";
-            //txtUnitPrice.Text = "";
             txtQuantityReturn.Text = "";
         }
 
@@ -48,25 +41,7 @@ namespace MyPos
         private void btnFind_Click(object sender, RoutedEventArgs e)
         {
             long bno = long.Parse(txtbillNo.Text);
-            //int pID = int.Parse(txtProductID.Text);
-
-            //using (SqlConnection con = new SqlConnection(cs))
-            //{
-            //    SqlCommand cmd = new SqlCommand();
-            //    cmd.CommandText = "SELECT date,description,quantity,unitprice,total FROM Sales WHERE billno=" + bno + " AND productID=" + pID;
-            //    cmd.Connection = con;
-            //    con.Open();
-            //    SqlDataReader rd = cmd.ExecuteReader();
-            //    while (rd.Read())
-            //    {
-            //        txtDate.Text = rd.GetValue(0).ToString();
-            //        txtDescription.Text = rd.GetValue(1).ToString();
-            //        txtQuantity.Text = rd.GetValue(2).ToString();
-            //        txtUnitPrice.Text = rd.GetValue(3).ToString();
-            //        txtTotal.Text = rd.GetValue(4).ToString();
-            //    }
-            //}
-
+           
             //retrive bill information
             using (SqlConnection con = new SqlConnection(cs))
             {
